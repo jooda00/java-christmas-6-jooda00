@@ -18,4 +18,8 @@ public class Event {
     public int getDate() {
         return date;
     }
+
+    public Map<String, Integer> getMenus() {
+        return menus;
+    }
 }

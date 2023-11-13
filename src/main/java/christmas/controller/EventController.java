@@ -13,6 +13,7 @@ public class EventController {
 
     public void play() {
         prepareEvent();
+        progressEvent();
     }
 
     private void prepareEvent() {
@@ -20,6 +21,10 @@ public class EventController {
         event = new Event(getDate());
         getMenus();
         OutputView.printResult(event.getDate());
+    }
+
+    private void progressEvent() {
+        OutputView.printMenus(event);
     }
 
     private int getDate() {
