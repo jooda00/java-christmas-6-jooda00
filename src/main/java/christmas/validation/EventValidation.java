@@ -9,7 +9,7 @@ public class EventValidation {
     private static final int MAX_COUNT = 20;
 
     public static final void validateDate(int date) {
-        if ((date < 1 || date > 31)) {
+        if (date < 1 || date > 31) {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
         }
     }
@@ -38,4 +38,9 @@ public class EventValidation {
         }
     }
 
+    public static final void validateIsOnlyDrinkType(List<String> menus) {
+        if (EventMenu.isAllDrinks(menus)) {
+            throw new IllegalArgumentException("[ERROR] 음료만 주문할 수 없습니다.");
+        }
+    }
 }

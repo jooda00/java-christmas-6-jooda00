@@ -1,7 +1,6 @@
 package christmas.util;
 
 import camp.nextstep.edu.missionutils.Console;
-import christmas.validation.EventValidation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,30 +18,26 @@ public class Util {
     }
 
     public static final List<String> separateInput(String input) {
-        List<String> inputParts = Arrays.asList(input.split(","));
-        extractMenu(inputParts);
-        extractCount(inputParts);
-        return inputParts;
+        List<String> pairs = Arrays.asList(input.split(","));
+        return pairs;
     }
 
-    public static final void extractMenu(List<String> inputParts) {
+    public static final List<String> extractMenu(List<String> pairs) {
         List<String> menus = new ArrayList<>();
-        for (int i = 0; i < inputParts.size(); i++) {
-            String menu = Arrays.asList(inputParts.get(i).split("-")).get(0);
+        for (int i = 0; i < pairs.size(); i++) {
+            String menu = Arrays.asList(pairs.get(i).split("-")).get(0);
             menus.add(menu);
-            EventValidation.validateDuplication(menus);
-            EventValidation.validateIsExistedMenu(menu);
         }
+        return menus;
     }
 
-    public static final void extractCount(List<String> inputParts) {
-        int total = 0;
-        for (int i = 0; i < inputParts.size(); i++) {
-            String count = Arrays.asList(inputParts.get(i).split("-")).get(1);
+    public static final List<Integer> extractCount(List<String> pairs) {
+        List<Integer> counts = new ArrayList<>();
+        for (int i = 0; i < pairs.size(); i++) {
+            String count = Arrays.asList(pairs.get(i).split("-")).get(1);
             int num = convertStringToInt(count);
-            EventValidation.validateOverSTANDARD_COUNT(num);
-            total += num;
+            counts.add(num);
         }
-        EventValidation.validateOverMAX_COUNT(total);
+        return counts;
     }
 }
