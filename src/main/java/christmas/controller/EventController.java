@@ -1,9 +1,16 @@
 package christmas.controller;
 
+import christmas.model.Event;
+import christmas.util.Util;
+import christmas.validation.EventValidation;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 
+import java.util.List;
+
 public class EventController {
+    private Event event;
+
     public void play() {
         prepareEvent();
     }
@@ -11,13 +18,15 @@ public class EventController {
     private void prepareEvent() {
         OutputView.printStart();
         int date = getDate();
-        String menu = getMenu();
+        event = new Event(date);
+        getMenus();
         OutputView.printResult(date);
     }
 
     private int getDate() {
         try {
             int date = InputView.readDate();
+            EventValidation.validateDate(date);
             return date;
         }
         catch (IllegalArgumentException e) {
@@ -26,14 +35,22 @@ public class EventController {
         }
     }
 
-    private String getMenu() {
+    private void getMenus() {
         try {
-            String menu = InputView.readMenuAndCount();
-            return menu;
+            List<String> list = InputView.readMenuAndCount();
+            List<String> menus = Util.extractMenu(list);
+            List<Integer> counts = Util.extractCount(list);
+            initializeEvent(menus, counts);
         }
         catch (IllegalArgumentException e) {
             System.out.println(e);
-            return getMenu();
+            getMenus();
+        }
+    }
+
+    private void initializeEvent(List<String> menus, List<Integer> counts) {
+        for (int i = 0; i < menus.size(); i++) {
+            event.addMenu(menus.get(i), counts.get(i));
         }
     }
 }
