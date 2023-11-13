@@ -13,7 +13,7 @@ public class EventController {
 
     public void play() {
         prepareEvent();
-        progressEvent();
+        progressEventBeforeBenefited();
     }
 
     private void prepareEvent() {
@@ -23,8 +23,10 @@ public class EventController {
         OutputView.printResult(event.getDate());
     }
 
-    private void progressEvent() {
+    private void progressEventBeforeBenefited() {
         OutputView.printMenus(event);
+        int total = event.calculateTotalPrice();
+        OutputView.printTotalPriceBeforeDiscount(total);
     }
 
     private int getDate() {
