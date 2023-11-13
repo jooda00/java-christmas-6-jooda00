@@ -27,6 +27,7 @@ public class EventController {
         OutputView.printMenus(event);
         int total = event.calculateTotalPrice();
         OutputView.printTotalPriceBeforeDiscount(total);
+        OutputView.printFreebieMenu(total);
     }
 
     private int getDate() {

@@ -25,4 +25,13 @@ public class OutputView {
         System.out.println("\n<할인 전 총주문 금액>");
         System.out.println(formatter.format(price) + "원");
     }
+
+    public static final void printFreebieMenu(int total) {
+        System.out.println("\n<증정 메뉴>");
+        if (total > 120000) {
+            System.out.println("샴페인 1개");
+            return;
+        }
+        System.out.println("없음");
+    }
 }
