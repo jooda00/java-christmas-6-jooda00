@@ -6,6 +6,7 @@ import java.util.List;
 
 public class EventValidation {
     private static final int STANDARD_COUNT = 1;
+    private static final int MAX_COUNT = 20;
 
     public static final void validateDate(int date) {
         if ((date < 1 || date > 31)) {
@@ -30,4 +31,11 @@ public class EventValidation {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
+
+    public static final void validateOverMAX_COUNT(int sum) {
+        if (sum > MAX_COUNT) {
+            throw new IllegalArgumentException("[ERROR] 메뉴는 총 합계 20개를 넘길 수 없습니다.");
+        }
+    }
+
 }

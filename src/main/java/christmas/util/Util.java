@@ -36,10 +36,13 @@ public class Util {
     }
 
     public static final void extractCount(List<String> inputParts) {
+        int total = 0;
         for (int i = 0; i < inputParts.size(); i++) {
             String count = Arrays.asList(inputParts.get(i).split("-")).get(1);
             int num = convertStringToInt(count);
             EventValidation.validateOverSTANDARD_COUNT(num);
+            total += num;
         }
+        EventValidation.validateOverMAX_COUNT(total);
     }
 }
