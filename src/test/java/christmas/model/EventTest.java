@@ -11,7 +11,7 @@ public class EventTest {
     @BeforeEach
     void setUp() {
         event = new Event(25);
-        event.addMenu("티본스테이크", 2);
+        event.addMenu("티본스테이크", 3);
         event.addMenu("초코케이크", 2);
         event.addMenu("레드와인", 1);
     }
@@ -35,5 +35,12 @@ public class EventTest {
         int discount = 4046;
 
         assertThat(discount).isEqualTo(event.executeWeekdayDiscount());
+    }
+
+    @Test
+    void 주말_할인() {
+        int discount = 6069;
+
+        assertThat(discount).isEqualTo(event.executeWeekendDiscount());
     }
 }
