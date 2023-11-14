@@ -15,6 +15,7 @@ public class EventTest {
     @BeforeEach
     void setUp() {
         event = new Event(25);
+        event.addMenu("티본스테이크", 2);
         event.addMenu("초코케이크", 2);
         event.addMenu("레드와인", 1);
     }
@@ -24,5 +25,12 @@ public class EventTest {
         int discount = 3400;
 
         assertThat(discount).isEqualTo(event.executeChristmasDiscount());
+    }
+
+    @Test
+    void 할인_전_총주문_금액_계산() {
+        int total = 200000;
+
+        assertThat(total).isEqualTo(event.calculateTotalPrice());
     }
 }
