@@ -1,6 +1,7 @@
 package christmas.util;
 
 import camp.nextstep.edu.missionutils.Console;
+import christmas.validation.EventValidation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,6 +14,7 @@ public class Util {
     }
 
     public static final int convertStringToInt(String input) {
+        EventValidation.validateIsNumber(input);
         int num = Integer.parseInt(input);
         return num;
     }
