@@ -34,4 +34,14 @@ public class OutputView {
         }
         System.out.println("없음");
     }
+
+    public static final void printBenefits() {
+        System.out.println("\n<혜택 내역>");
+    }
+
+    public static final void printChristmasBenefit(int discount) {
+        if (discount != 0) {
+            System.out.println("크리스마스 디데이 할인: " + "-" + formatter.format(discount) + "원");
+        }
+    }
 }

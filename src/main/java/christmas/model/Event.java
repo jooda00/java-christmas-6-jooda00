@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Event {
+    private static final int CHRISTMAS_DAY = 25;
     private final int date;
     private final Map<String, Integer> menus = new LinkedHashMap<>();
 
@@ -29,5 +30,14 @@ public class Event {
             total += EventMenu.calculateTotalPrice(pair.getKey(), pair.getValue());
         }
         return total;
+    }
+
+    public int executeChristmasDiscount() {
+        int discount = 1000;
+        if (this.date <= CHRISTMAS_DAY) {
+            discount += 100 * (this.date - 1);
+            return discount;
+        }
+        return 0;
     }
 }

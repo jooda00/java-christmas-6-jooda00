@@ -1,6 +1,8 @@
 package christmas.controller;
 
 import christmas.model.Event;
+import christmas.service.ChristmasEventServiceImpl;
+import christmas.service.EventService;
 import christmas.util.Util;
 import christmas.validation.EventValidation;
 import christmas.view.InputView;
@@ -10,10 +12,12 @@ import java.util.List;
 
 public class EventController {
     private Event event;
+    private EventService eventService;
 
     public void play() {
         prepareEvent();
         progressEventBeforeBenefited();
+        progressEvent();
     }
 
     private void prepareEvent() {
@@ -28,6 +32,14 @@ public class EventController {
         int total = event.calculateTotalPrice();
         OutputView.printTotalPriceBeforeDiscount(total);
         OutputView.printFreebieMenu(total);
+    }
+
+    private void progressEvent() {
+        OutputView.printBenefits();
+//        eventService = new ChristmasEventServiceImpl();
+//        int christmasDiscount = eventService.executeDiscount(event);
+        int christmasDiscount = event.executeChristmasDiscount();
+        OutputView.printChristmasBenefit(christmasDiscount);
     }
 
     private int getDate() {
