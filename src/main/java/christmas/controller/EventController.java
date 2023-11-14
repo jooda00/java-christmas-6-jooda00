@@ -26,13 +26,13 @@ public class EventController {
 
     private void progressEventBeforeBenefited() {
         OutputView.printMenus(event);
-        int total = event.calculateTotalPrice();
-        OutputView.printTotalPriceBeforeDiscount(total);
-        OutputView.printFreebieMenu(total);
+        event.calculateTotalPrice();
+        OutputView.printTotalPriceBeforeDiscount(event.getTotal());
+        OutputView.printFreebieMenu(event.getTotal());
     }
 
     private void progressEvent() {
-        OutputView.printBenefits();
+        OutputView.printBenefits(event.getTotal());
         int christmasDiscount = event.executeChristmasDiscount();
         OutputView.printChristmasBenefit(christmasDiscount);
         int weekDayDiscount = event.executeWeekdayDiscount();

@@ -18,9 +18,10 @@ public class EventTest {
 
     @Test
     void 할인_전_총주문_금액_계산() {
-        int total = 200000;
+        int total = 255000;
+        event.calculateTotalPrice();
 
-        assertThat(total).isEqualTo(event.calculateTotalPrice());
+        assertThat(total).isEqualTo(event.getTotal());
     }
 
     @Test

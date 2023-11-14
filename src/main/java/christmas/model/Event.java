@@ -8,6 +8,7 @@ public class Event {
     private static final int DISCOUNT_AMOUNT = 2023;
     private final int date;
     private final Map<String, Integer> menus = new LinkedHashMap<>();
+    private int total = 0;
 
     public Event(int date) {
         this.date = date;
@@ -17,20 +18,10 @@ public class Event {
         menus.put(menu, count);
     }
 
-    public int getDate() {
-        return date;
-    }
-
-    public Map<String, Integer> getMenus() {
-        return menus;
-    }
-
-    public int calculateTotalPrice() {
-        int total = 0;
+    public void calculateTotalPrice() {
         for (Map.Entry<String, Integer> pair : menus.entrySet()) {
-            total += EventMenu.calculateTotalPrice(pair.getKey(), pair.getValue());
+            this.total += EventMenu.calculateTotalPrice(pair.getKey(), pair.getValue());
         }
-        return total;
     }
 
     public int executeChristmasDiscount() {
@@ -58,5 +49,17 @@ public class Event {
             return discount * DISCOUNT_AMOUNT;
         }
         return discount;
+    }
+
+    public int getDate() {
+        return date;
+    }
+
+    public Map<String, Integer> getMenus() {
+        return menus;
+    }
+
+    public int getTotal() {
+        return total;
     }
 }
