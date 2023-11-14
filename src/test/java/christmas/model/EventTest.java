@@ -3,14 +3,10 @@ package christmas.model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class EventTest {
     private Event event;
-    private Map<String, Integer> menus = new LinkedHashMap<>();
 
     @BeforeEach
     void setUp() {
@@ -21,6 +17,13 @@ public class EventTest {
     }
 
     @Test
+    void 할인_전_총주문_금액_계산() {
+        int total = 200000;
+
+        assertThat(total).isEqualTo(event.calculateTotalPrice());
+    }
+
+    @Test
     void 크리스마스_디데이_할인() {
         int discount = 3400;
 
@@ -28,9 +31,9 @@ public class EventTest {
     }
 
     @Test
-    void 할인_전_총주문_금액_계산() {
-        int total = 200000;
+    void 평일_할인() {
+        int discount = 4046;
 
-        assertThat(total).isEqualTo(event.calculateTotalPrice());
+        assertThat(discount).isEqualTo(event.executeWeekdayDiscount());
     }
 }
