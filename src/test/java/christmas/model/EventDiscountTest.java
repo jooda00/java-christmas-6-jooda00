@@ -43,4 +43,11 @@ public class EventDiscountTest {
 
         assertThat(discount).isEqualTo(eventDiscount.executeWeekendDiscount(event));
     }
+
+    @Test
+    void 특별_할인() {
+        int discount = 1000;
+
+        assertThat(discount).isEqualTo(eventDiscount.executeSpecialDiscount(event));
+    }
 }
