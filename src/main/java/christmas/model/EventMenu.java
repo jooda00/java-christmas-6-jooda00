@@ -61,6 +61,14 @@ public enum EventMenu {
         return count;
     }
 
+    public static int caculateMainCount(Map<String, Integer> menus) {
+        int count = 0;
+        for (Map.Entry<String, Integer> menu : menus.entrySet()) {
+            count += isMainType(menu.getKey(), menu.getValue());
+        }
+        return count;
+    }
+
     public static boolean isValidMenu(String input) {
         for (EventMenu menu : EventMenu.values()) {
             if (menu.getMenu().equals(input)) {
@@ -91,6 +99,15 @@ public enum EventMenu {
     private static int isDessertType(String menu, Integer count) {
         for (EventMenu eventMenu : EventMenu.values()) {
             if (eventMenu.getMenu().equals(menu) && eventMenu.getType().equals("DESSERT")) {
+                return count;
+            }
+        }
+        return 0;
+    }
+
+    private static int isMainType(String menu, Integer count) {
+        for (EventMenu eventMenu : EventMenu.values()) {
+            if (eventMenu.getMenu().equals(menu) && eventMenu.getType().equals("MAIN")) {
                 return count;
             }
         }

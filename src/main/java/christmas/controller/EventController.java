@@ -37,6 +37,8 @@ public class EventController {
         OutputView.printChristmasBenefit(christmasDiscount);
         int weekDayDiscount = event.executeWeekdayDiscount();
         OutputView.printWeekdayBenefit(weekDayDiscount);
+        int weekEndDiscount = event.executeWeekendDiscount();
+        OutputView.printWeekendBenefit(weekEndDiscount);
     }
 
     private int getDate() {

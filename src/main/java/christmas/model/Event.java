@@ -50,4 +50,13 @@ public class Event {
         }
         return discount;
     }
+
+    public int executeWeekendDiscount() {
+        int discount = 0;
+        if (EventDay.isWeekend(this.date)) {
+            discount = EventMenu.caculateMainCount(this.getMenus());
+            return discount * DISCOUNT_AMOUNT;
+        }
+        return discount;
+    }
 }

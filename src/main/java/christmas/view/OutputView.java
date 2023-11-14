@@ -50,4 +50,10 @@ public class OutputView {
             System.out.println("평일 할인: " + "-" + formatter.format(discount) + "원");
         }
     }
+
+    public static void printWeekendBenefit(int discount) {
+        if (discount != 0) {
+            System.out.println("주말 할인: " + "-" + formatter.format(discount) + "원");
+        }
+    }
 }
