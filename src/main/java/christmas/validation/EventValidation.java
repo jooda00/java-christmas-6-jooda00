@@ -8,7 +8,7 @@ public class EventValidation {
     private static final int STANDARD_COUNT = 1;
     private static final int MAX_COUNT = 20;
 
-    public static final void validateIsNumber(String input) {
+    public static final void validateDateIsNumber(String input) {
         if (!input.chars().allMatch(Character::isDigit)) {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
         }
@@ -17,6 +17,20 @@ public class EventValidation {
     public static final void validateDate(int date) {
         if (date < 1 || date > 31) {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+        }
+    }
+
+    public static final void validateIsCorrectForm(List<String> pairs) {
+        for (String pair : pairs) {
+            if (pair.trim().contains(" ")) {
+                throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            }
+        }
+    }
+
+    public static final void validateValueIsNumber(String value) {
+        if (!value.chars().allMatch(Character::isDigit)) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
 

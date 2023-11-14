@@ -14,14 +14,23 @@ public class Util {
     }
 
     public static final int convertStringToInt(String input) {
-        EventValidation.validateIsNumber(input);
+        EventValidation.validateDateIsNumber(input);
         int num = Integer.parseInt(input);
         return num;
     }
 
     public static final List<String> separateInput(String input) {
         List<String> pairs = Arrays.asList(input.split(","));
+        EventValidation.validateIsCorrectForm(pairs);
+        separateInputByDash(pairs);
         return pairs;
+    }
+
+    public static final void separateInputByDash(List<String> pairs) {
+        for (int i = 0; i < pairs.size(); i++) {
+            String value = Arrays.asList(pairs.get(i).split("-")).get(1);
+            EventValidation.validateValueIsNumber(value);
+        }
     }
 
     public static final List<String> extractMenu(List<String> pairs) {
