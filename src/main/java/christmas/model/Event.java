@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class Event {
     private static final int CHRISTMAS_DAY = 25;
+    private static final int DISCOUNT_AMOUNT = 2023;
     private final int date;
     private final Map<String, Integer> menus = new LinkedHashMap<>();
 
@@ -39,5 +40,14 @@ public class Event {
             return discount;
         }
         return 0;
+    }
+
+    public int executeWeekdayDiscount() {
+        int discount = 0;
+        if (EventDay.isWeekDay(this.date)) {
+            discount = EventMenu.calculateDessertCount(this.getMenus());
+            return discount * DISCOUNT_AMOUNT;
+        }
+        return discount;
     }
 }
