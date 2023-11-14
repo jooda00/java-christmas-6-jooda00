@@ -69,9 +69,10 @@ public class EventController {
 
     private void getDiscounts() {
         eventDiscount = new EventDiscount(event);
-        int christmasDiscount = eventDiscount.executeChristmasDiscount();
-        int weekDayDiscount = eventDiscount.executeWeekdayDiscount();
-        int weekEndDiscount = eventDiscount.executeWeekendDiscount();
+        eventDiscount.executeChristmasDiscount();
+        eventDiscount.executeWeekdayDiscount();
+        eventDiscount.executeWeekendDiscount();
+        eventDiscount.executeSpecialDiscount();
         OutputView.printEachBenefit(eventDiscount);
         OutputView.printFreebieBenefit(event.getTotal());
     }

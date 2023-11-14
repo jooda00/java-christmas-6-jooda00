@@ -44,6 +44,14 @@ public class EventDiscount {
         return calculateDiscount("weekend", discount);
     }
 
+    public int executeSpecialDiscount() {
+        int discount = 0;
+        if (EventDay.isSpecialDay(event.getDate())) {
+            discount = 1000;
+        }
+        return calculateDiscount("special", discount);
+    }
+
     public Map<String, Integer> getDiscounts() {
         return discounts;
     }

@@ -56,29 +56,9 @@ public class OutputView {
             System.out.println("주말 할인: " + "-" + formatter.format(eventDiscount.getDiscounts()
                     .get("weekend")) + "원");
         }
-    }
-
-    public static final void printChristmasBenefit(int discount) {
-        if (discount != 0) {
-            System.out.println("크리스마스 디데이 할인: " + "-" + formatter.format(discount) + "원");
-        }
-    }
-
-    public static void printWeekdayBenefit(int discount) {
-        if (discount != 0) {
-            System.out.println("평일 할인: " + "-" + formatter.format(discount) + "원");
-        }
-    }
-
-    public static void printWeekendBenefit(int discount) {
-        if (discount != 0) {
-            System.out.println("주말 할인: " + "-" + formatter.format(discount) + "원");
-        }
-    }
-
-    public static void printSpecialBenefit(int discount) {
-        if (discount == 0) {
-            System.out.println("특별 할인: -1,000원");
+        if (eventDiscount.getDiscounts().get("special") != 0) {
+            System.out.println("특별 할인: " + "-" + formatter.format(eventDiscount.getDiscounts()
+                    .get("special")) + "원");
         }
     }
 
