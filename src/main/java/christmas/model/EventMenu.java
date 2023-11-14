@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum EventMenu {
     SOUP("양송이수프", 6000, "APPETIZER"),
-    TAPAS("타파스", 5000, "APPETIZER"),
+    TAPAS("타파스", 5500, "APPETIZER"),
     SALAD("시저샐러드", 8000, "APPETIZER"),
 
     STEAK("티본스테이크", 55000, "MAIN"),
@@ -61,7 +61,7 @@ public enum EventMenu {
         return count;
     }
 
-    public static int caculateMainCount(Map<String, Integer> menus) {
+    public static int calculateMainCount(Map<String, Integer> menus) {
         int count = 0;
         for (Map.Entry<String, Integer> menu : menus.entrySet()) {
             count += isMainType(menu.getKey(), menu.getValue());

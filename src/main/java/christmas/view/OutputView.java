@@ -35,8 +35,11 @@ public class OutputView {
         System.out.println("없음");
     }
 
-    public static final void printBenefits() {
+    public static final void printBenefits(int total) {
         System.out.println("\n<혜택 내역>");
+        if (total < 10000) {
+            System.out.println("없음");
+        }
     }
 
     public static final void printChristmasBenefit(int discount) {

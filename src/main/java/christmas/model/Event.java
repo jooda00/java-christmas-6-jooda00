@@ -45,7 +45,7 @@ public class Event {
     public int executeWeekendDiscount() {
         int discount = 0;
         if (EventDay.isWeekend(this.date)) {
-            discount = EventMenu.caculateMainCount(this.getMenus());
+            discount = EventMenu.calculateMainCount(this.getMenus());
             return discount * DISCOUNT_AMOUNT;
         }
         return discount;

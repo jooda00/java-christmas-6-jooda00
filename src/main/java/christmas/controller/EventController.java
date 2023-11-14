@@ -1,6 +1,7 @@
 package christmas.controller;
 
 import christmas.model.Event;
+import christmas.model.EventDiscount;
 import christmas.util.Util;
 import christmas.validation.EventValidation;
 import christmas.view.InputView;
@@ -10,6 +11,7 @@ import java.util.List;
 
 public class EventController {
     private Event event;
+    private EventDiscount eventDiscount = new EventDiscount();
 
     public void play() {
         prepareEvent();
@@ -33,12 +35,9 @@ public class EventController {
 
     private void progressEvent() {
         OutputView.printBenefits(event.getTotal());
-        int christmasDiscount = event.executeChristmasDiscount();
-        OutputView.printChristmasBenefit(christmasDiscount);
-        int weekDayDiscount = event.executeWeekdayDiscount();
-        OutputView.printWeekdayBenefit(weekDayDiscount);
-        int weekEndDiscount = event.executeWeekendDiscount();
-        OutputView.printWeekendBenefit(weekEndDiscount);
+        if (event.getTotal() >= 10000) {
+            getDiscounts();
+        }
     }
 
     private int getDate() {
@@ -57,8 +56,8 @@ public class EventController {
         try {
             List<String> pairs = InputView.readMenuAndCount();
             List<String> menus = Util.extractMenu(pairs);
-            List<Integer> counts = Util.extractCount(pairs);
             validateMenus(menus);
+            List<Integer> counts = Util.extractCount(pairs);
             validateCounts(counts);
             initializeEvent(menus, counts);
         }
@@ -66,6 +65,12 @@ public class EventController {
             System.out.println(e);
             getMenus();
         }
+    }
+
+    private void getDiscounts() {
+        OutputView.printChristmasBenefit(eventDiscount.executeChristmasDiscount(event));
+        OutputView.printWeekdayBenefit(eventDiscount.executeWeekdayDiscount(event));
+        OutputView.printWeekendBenefit(eventDiscount.executeWeekendDiscount(event));
     }
 
     private void initializeEvent(List<String> menus, List<Integer> counts) {

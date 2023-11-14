@@ -20,10 +20,6 @@ public enum EventDay {
         return days;
     }
 
-    public String getType() {
-        return type;
-    }
-
     public static boolean isWeekDay(int date) {
         if (EventDay.WEEKDAY.getDays().contains(date)) {
             return true;
