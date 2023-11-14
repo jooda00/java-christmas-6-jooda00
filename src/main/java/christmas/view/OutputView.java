@@ -1,6 +1,7 @@
 package christmas.view;
 
 import christmas.model.Event;
+import christmas.model.EventDiscount;
 
 import java.text.DecimalFormat;
 
@@ -42,6 +43,21 @@ public class OutputView {
         }
     }
 
+    public static final void printEachBenefit(EventDiscount eventDiscount) {
+        if (eventDiscount.getDiscounts().get("christmas") != 0) {
+            System.out.println("크리스마스 디데이 할인: " + "-" + formatter.format(eventDiscount.getDiscounts()
+                    .get("christmas")) + "원");
+        }
+        if (eventDiscount.getDiscounts().get("weekday") != 0) {
+            System.out.println("평일 할인: " + "-" + formatter.format(eventDiscount.getDiscounts()
+                    .get("weekday")) + "원");
+        }
+        if (eventDiscount.getDiscounts().get("weekend") != 0) {
+            System.out.println("주말 할인: " + "-" + formatter.format(eventDiscount.getDiscounts()
+                    .get("weekend")) + "원");
+        }
+    }
+
     public static final void printChristmasBenefit(int discount) {
         if (discount != 0) {
             System.out.println("크리스마스 디데이 할인: " + "-" + formatter.format(discount) + "원");
@@ -57,6 +73,18 @@ public class OutputView {
     public static void printWeekendBenefit(int discount) {
         if (discount != 0) {
             System.out.println("주말 할인: " + "-" + formatter.format(discount) + "원");
+        }
+    }
+
+    public static void printSpecialBenefit(int discount) {
+        if (discount == 0) {
+            System.out.println("특별 할인: -1,000원");
+        }
+    }
+
+    public static void printFreebieBenefit(int total) {
+        if (total > 120000) {
+            System.out.println("증정 이벤트: -25,000원");
         }
     }
 }

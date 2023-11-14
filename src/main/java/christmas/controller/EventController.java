@@ -11,7 +11,7 @@ import java.util.List;
 
 public class EventController {
     private Event event;
-    private EventDiscount eventDiscount = new EventDiscount();
+    private EventDiscount eventDiscount;
 
     public void play() {
         prepareEvent();
@@ -68,9 +68,12 @@ public class EventController {
     }
 
     private void getDiscounts() {
-        OutputView.printChristmasBenefit(eventDiscount.executeChristmasDiscount(event));
-        OutputView.printWeekdayBenefit(eventDiscount.executeWeekdayDiscount(event));
-        OutputView.printWeekendBenefit(eventDiscount.executeWeekendDiscount(event));
+        eventDiscount = new EventDiscount(event);
+        int christmasDiscount = eventDiscount.executeChristmasDiscount();
+        int weekDayDiscount = eventDiscount.executeWeekdayDiscount();
+        int weekEndDiscount = eventDiscount.executeWeekendDiscount();
+        OutputView.printEachBenefit(eventDiscount);
+        OutputView.printFreebieBenefit(event.getTotal());
     }
 
     private void initializeEvent(List<String> menus, List<Integer> counts) {
