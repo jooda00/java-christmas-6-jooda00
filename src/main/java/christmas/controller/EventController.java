@@ -35,7 +35,6 @@ public class EventController {
 
     private void progressEvent() {
         eventDiscount = new EventDiscount(event);
-        eventDiscount.initializeDiscounts();
         OutputView.printBenefits(event.getTotal());
         if (event.getTotal() >= 10000) {
             getDiscounts();
@@ -74,10 +73,7 @@ public class EventController {
     }
 
     private void getDiscounts() {
-        eventDiscount.executeChristmasDiscount();
-        eventDiscount.executeWeekdayDiscount();
-        eventDiscount.executeWeekendDiscount();
-        eventDiscount.executeSpecialDiscount();
+        eventDiscount.calculateDiscounts();
         OutputView.printEachBenefit(eventDiscount);
         OutputView.printFreebieBenefit(event.getTotal());
     }

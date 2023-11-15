@@ -1,9 +1,11 @@
 package christmas.view;
 
+import christmas.model.Discount;
 import christmas.model.Event;
 import christmas.model.EventDiscount;
 
 import java.text.DecimalFormat;
+import java.util.List;
 
 public class OutputView {
     static DecimalFormat formatter = new DecimalFormat("###,###");
@@ -44,21 +46,11 @@ public class OutputView {
     }
 
     public static final void printEachBenefit(EventDiscount eventDiscount) {
-        if (eventDiscount.getDiscounts().get("christmas") != 0) {
-            System.out.println("크리스마스 디데이 할인: " + "-" + formatter.format(eventDiscount.getDiscounts()
-                    .get("christmas")) + "원");
-        }
-        if (eventDiscount.getDiscounts().get("weekday") != 0) {
-            System.out.println("평일 할인: " + "-" + formatter.format(eventDiscount.getDiscounts()
-                    .get("weekday")) + "원");
-        }
-        if (eventDiscount.getDiscounts().get("weekend") != 0) {
-            System.out.println("주말 할인: " + "-" + formatter.format(eventDiscount.getDiscounts()
-                    .get("weekend")) + "원");
-        }
-        if (eventDiscount.getDiscounts().get("special") != 0) {
-            System.out.println("특별 할인: " + "-" + formatter.format(eventDiscount.getDiscounts()
-                    .get("special")) + "원");
+        List<Discount> discounts = eventDiscount.getDiscounts();
+        for (Discount discount : discounts) {
+            if (discount.getDiscountAmount() != 0) {
+                System.out.println(discount.getTypeName() + ": -" + formatter.format(discount.getDiscountAmount()) + "원");
+            }
         }
     }
 
