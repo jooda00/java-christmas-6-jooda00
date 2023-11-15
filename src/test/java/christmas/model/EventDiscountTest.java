@@ -63,7 +63,23 @@ public class EventDiscountTest {
 
     @Test
     void 증정_메뉴가_없는_총혜택_금액_계산() {
+        event.calculateTotalPrice();;
         int totalBenefit = 8446;
+
+        assertThat(totalBenefit).isEqualTo(eventDiscount.calculateTotalBenefit());
+    }
+
+    @Test
+    void 증정_메뉴가_있는_총혜택_금액_계산() {
+        event = new Event(25);
+        eventDiscount = new EventDiscount(event);
+        event.addMenu("티본스테이크", 2);
+        event.addMenu("초코케이크", 2);
+        event.addMenu("제로콜라", 1);
+        event.addMenu("타파스", 1);
+        event.calculateTotalPrice();;
+        eventDiscount.calculateDiscounts();
+        int totalBenefit = 33446;
 
         assertThat(totalBenefit).isEqualTo(eventDiscount.calculateTotalBenefit());
     }
