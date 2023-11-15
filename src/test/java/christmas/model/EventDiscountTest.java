@@ -55,7 +55,14 @@ public class EventDiscountTest {
     }
 
     @Test
-    void 증정_메뉴가_없는_총혜택_금액() {
+    void 총할인_금액_계산() {
+        int totalDiscount = 8446;
+
+        assertThat(totalDiscount).isEqualTo(eventDiscount.calculateTotalDiscount());
+    }
+
+    @Test
+    void 증정_메뉴가_없는_총혜택_금액_계산() {
         int totalBenefit = 8446;
 
         assertThat(totalBenefit).isEqualTo(eventDiscount.calculateTotalBenefit());
