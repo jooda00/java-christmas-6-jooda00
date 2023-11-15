@@ -10,6 +10,9 @@ import java.util.List;
 public class OutputView {
     private static final int STANDARD_TOTAL_PRICE = 10000;
     private static final int TOTAL_PRICE_BEFORE_DISCOUNT = 120000;
+    private static final int STAR_BADGE_STANDARD_PRICE = 5000;
+    private static final int TREE_BADGE_STANDARD_PRICE = 10000;
+    private static final int SANTA_BADGE_STANDARD_PRICE = 20000;
     static DecimalFormat formatter = new DecimalFormat("###,###");
 
     public static final void printStart() {
@@ -78,18 +81,16 @@ public class OutputView {
 
     public static void printEventBadge(int totalBenefit) {
         System.out.println("\n<12월 이벤트 배지>");
-        if (totalBenefit >= 20000) {
-            System.out.println("산타");
-            return;
+        String badge = "없음";
+        if (totalBenefit >= STAR_BADGE_STANDARD_PRICE) {
+            badge = "별";
         }
-        if (totalBenefit >= 10000) {
-            System.out.println("트리");
-            return;
+        if (totalBenefit >= TREE_BADGE_STANDARD_PRICE) {
+            badge = "트리";
         }
-        if (totalBenefit >= 5000) {
-            System.out.println("별");
-            return;
+        if (totalBenefit >= SANTA_BADGE_STANDARD_PRICE) {
+            badge = "산타";
         }
-        System.out.println("없음");
+        System.out.println(badge);
     }
 }
