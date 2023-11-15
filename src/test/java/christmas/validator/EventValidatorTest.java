@@ -43,4 +43,13 @@ public class EventValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
+
+    @Test
+    void 메뉴_입력값에_메뉴가_메뉴판에_존재하지_않으면_예외_처리() {
+        String input = "케이크";
+
+        assertThatThrownBy(() -> EventValidator.validateIsExistedMenu(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+    }
 }
