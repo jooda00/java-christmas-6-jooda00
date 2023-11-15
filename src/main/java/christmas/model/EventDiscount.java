@@ -28,29 +28,27 @@ public class EventDiscount {
     }
 
     public int executeWeekdayDiscount() {
-        int discount = 0;
         if (EventDay.isWeekDay(event.getDate())) {
-            discount = EventMenu.calculateDessertCount(event.getMenus());
-            discount *= DISCOUNT_AMOUNT;
+            int discount = EventMenu.calculateDessertCount(event.getMenus()) * DISCOUNT_AMOUNT;
+            return calculateDiscount("weekday", discount);
         }
-        return calculateDiscount("weekday", discount);
+        return 0;
     }
 
     public int executeWeekendDiscount() {
-        int discount = 0;
         if (EventDay.isWeekend(event.getDate())) {
-            discount = EventMenu.calculateMainCount(event.getMenus());
-            discount *= DISCOUNT_AMOUNT;
+            int discount = EventMenu.calculateMainCount(event.getMenus()) * DISCOUNT_AMOUNT;
+            return calculateDiscount("weekend", discount);
         }
-        return calculateDiscount("weekend", discount);
+        return 0;
     }
 
     public int executeSpecialDiscount() {
-        int discount = 0;
         if (EventDay.isSpecialDay(event.getDate())) {
-            discount = 1000;
+            int discount = 1000;
+            return calculateDiscount("special", discount);
         }
-        return calculateDiscount("special", discount);
+        return 0;
     }
 
     public int calculateTotalDiscount() {
@@ -59,10 +57,11 @@ public class EventDiscount {
     }
 
     public int calculateTotalBenefit() {
+        int totalBenefit = calculateTotalDiscount();
         if (event.getTotal() > TOTAL_AMOUNT_BEFORE_BENEFIT) {
-            return calculateTotalDiscount() + EventMenu.CHAMPAGNE.getPrice();
+            totalBenefit += EventMenu.CHAMPAGNE.getPrice();
         }
-        return calculateTotalDiscount();
+        return totalBenefit;
     }
 
     public Map<String, Integer> getDiscounts() {
