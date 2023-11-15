@@ -35,6 +35,7 @@ public class EventController {
 
     private void progressEvent() {
         eventDiscount = new EventDiscount(event);
+        eventDiscount.initializeDiscounts();
         OutputView.printBenefits(event.getTotal());
         if (event.getTotal() >= 10000) {
             getDiscounts();

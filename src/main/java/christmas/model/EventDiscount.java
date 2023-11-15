@@ -14,6 +14,13 @@ public class EventDiscount {
         this.event = event;
     }
 
+    public void initializeDiscounts() {
+        discounts.put("christmas", 0);
+        discounts.put("weekday", 0);
+        discounts.put("weekend", 0);
+        discounts.put("special", 0);
+    }
+
     public int calculateDiscount(String discountType, int discountValue) {
         discounts.put(discountType, discountValue);
         return discountValue;
