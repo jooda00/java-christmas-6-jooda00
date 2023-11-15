@@ -81,4 +81,21 @@ public class OutputView {
         System.out.println("\n<할인 후 예상 결제 금액>");
         System.out.println(formatter.format(price) + "원");
     }
+
+    public static void printEventBadge(int totalBenefit) {
+        System.out.println("\n<12월 이벤트 배지>");
+        if (totalBenefit >= 20000) {
+            System.out.println("산타");
+            return;
+        }
+        if (totalBenefit >= 10000) {
+            System.out.println("트리");
+            return;
+        }
+        if (totalBenefit >= 5000) {
+            System.out.println("별");
+            return;
+        }
+        System.out.println("없음");
+    }
 }

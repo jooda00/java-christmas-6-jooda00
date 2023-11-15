@@ -42,6 +42,7 @@ public class EventController {
         int totalBenefit = eventDiscount.calculateTotalBenefit();
         OutputView.printTotalDiscount(totalBenefit);
         OutputView.printExceptedPriceAfterDiscount(event.getTotal() - eventDiscount.calculateTotalDiscount());
+        OutputView.printEventBadge(totalBenefit);
     }
 
     private int getDate() {
