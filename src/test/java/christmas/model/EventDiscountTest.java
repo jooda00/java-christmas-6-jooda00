@@ -13,9 +13,14 @@ public class EventDiscountTest {
     void setUp() {
         event = new Event(25);
         eventDiscount = new EventDiscount(event);
-        event.addMenu("티본스테이크", 3);
+        event.addMenu("티본스테이크", 1);
         event.addMenu("초코케이크", 2);
-        event.addMenu("레드와인", 1);
+        event.addMenu("제로콜라", 1);
+        event.addMenu("타파스", 1);
+        eventDiscount.calculateDiscount("christmas", 3400);
+        eventDiscount.calculateDiscount("weekday", 4046);
+        eventDiscount.calculateDiscount("weekend", 0);
+        eventDiscount.calculateDiscount("special", 1000);
     }
 
     @Test
@@ -49,5 +54,12 @@ public class EventDiscountTest {
         int discount = 1000;
 
         assertThat(discount).isEqualTo(eventDiscount.executeSpecialDiscount());
+    }
+
+    @Test
+    void 증정_메뉴가_없는_총혜택_금액() {
+        int totalBenefit = 8446;
+
+        assertThat(totalBenefit).isEqualTo(eventDiscount.calculateTotalBenefit());
     }
 }
