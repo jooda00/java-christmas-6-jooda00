@@ -34,4 +34,13 @@ public class EventValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
+
+    @Test
+    void 메뉴_입력값에_개수가_숫자가_아니면_예외_처리() {
+        String value = "count";
+
+        assertThatThrownBy(() -> EventValidator.validateValueIsNumber(value))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+    }
 }
