@@ -79,4 +79,13 @@ public class EventValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 메뉴는 총 합계 20개를 넘길 수 없습니다.");
     }
+
+    @Test
+    void 주문_메뉴가_모두_음료이면_예외_처리() {
+        List<String> menus = Arrays.asList("제로콜라", "레드와인");
+
+        assertThatThrownBy(() -> EventValidator.validateIsOnlyDrinkType(menus))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 음료만 주문할 수 없습니다.");
+    }
 }
