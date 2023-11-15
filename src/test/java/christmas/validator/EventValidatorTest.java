@@ -2,6 +2,9 @@ package christmas.validator;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class EventValidatorTest {
@@ -21,5 +24,14 @@ public class EventValidatorTest {
         assertThatThrownBy(() -> EventValidator.validateDate(date))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+    }
+
+    @Test
+    void 메뉴_입력값에_공백_포함_시_예외_처리() {
+        List<String> pairs = Arrays.asList("초코케이크-  2");
+
+        assertThatThrownBy(() -> EventValidator.validateIsCorrectForm(pairs))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
 }
