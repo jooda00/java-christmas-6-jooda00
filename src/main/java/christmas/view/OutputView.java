@@ -8,6 +8,8 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 public class OutputView {
+    private static final int STANDARD_TOTAL_PRICE = 10000;
+    private static final int TOTAL_PRICE_BEFORE_DISCOUNT = 120000;
     static DecimalFormat formatter = new DecimalFormat("###,###");
 
     public static final void printStart() {
@@ -31,7 +33,7 @@ public class OutputView {
 
     public static final void printFreebieMenu(int total) {
         System.out.println("\n<증정 메뉴>");
-        if (total > 120000) {
+        if (total > TOTAL_PRICE_BEFORE_DISCOUNT) {
             System.out.println("샴페인 1개");
             return;
         }
@@ -40,7 +42,7 @@ public class OutputView {
 
     public static final void printBenefits(int total) {
         System.out.println("\n<혜택 내역>");
-        if (total < 10000) {
+        if (total < STANDARD_TOTAL_PRICE) {
             System.out.println("없음");
         }
     }
@@ -55,7 +57,7 @@ public class OutputView {
     }
 
     public static void printFreebieBenefit(int total) {
-        if (total > 120000) {
+        if (total > TOTAL_PRICE_BEFORE_DISCOUNT) {
             System.out.println("증정 이벤트: -25,000원");
         }
     }

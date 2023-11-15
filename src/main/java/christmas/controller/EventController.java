@@ -10,6 +10,7 @@ import christmas.view.OutputView;
 import java.util.List;
 
 public class EventController {
+    private static final int STANDARD_TOTAL_PRICE = 10000;
     private Event event;
     private EventDiscount eventDiscount;
 
@@ -36,7 +37,7 @@ public class EventController {
     private void progressEvent() {
         eventDiscount = new EventDiscount(event);
         OutputView.printBenefits(event.getTotal());
-        if (event.getTotal() >= 10000) {
+        if (event.getTotal() >= STANDARD_TOTAL_PRICE) {
             getDiscounts();
         }
         int totalBenefit = eventDiscount.calculateTotalBenefit();
