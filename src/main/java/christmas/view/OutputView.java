@@ -68,12 +68,17 @@ public class OutputView {
         }
     }
 
-    public static void printTotalDiscount(int totalDiscount) {
+    public static void printTotalDiscount(int totalBenefit) {
         System.out.println("\n<총혜택 금액>");
-        if (totalDiscount != 0) {
-            System.out.println("-" + formatter.format(totalDiscount) + "원");
+        if (totalBenefit != 0) {
+            System.out.println("-" + formatter.format(totalBenefit) + "원");
             return;
         }
-        System.out.println(formatter.format(totalDiscount) + "원");
+        System.out.println(formatter.format(totalBenefit) + "원");
+    }
+
+    public static void printExceptedPriceAfterDiscount(int price) {
+        System.out.println("\n<할인 후 예상 결제 금액>");
+        System.out.println(formatter.format(price) + "원");
     }
 }

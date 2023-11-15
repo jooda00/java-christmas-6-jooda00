@@ -39,7 +39,9 @@ public class EventController {
         if (event.getTotal() >= 10000) {
             getDiscounts();
         }
-        OutputView.printTotalDiscount(eventDiscount.calculateTotalBenefit());
+        int totalBenefit = eventDiscount.calculateTotalBenefit();
+        OutputView.printTotalDiscount(totalBenefit);
+        OutputView.printExceptedPriceAfterDiscount(event.getTotal() - eventDiscount.calculateTotalDiscount());
     }
 
     private int getDate() {
@@ -70,7 +72,6 @@ public class EventController {
     }
 
     private void getDiscounts() {
-        eventDiscount = new EventDiscount(event);
         eventDiscount.executeChristmasDiscount();
         eventDiscount.executeWeekdayDiscount();
         eventDiscount.executeWeekendDiscount();

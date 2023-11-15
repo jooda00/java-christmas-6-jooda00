@@ -53,12 +53,16 @@ public class EventDiscount {
         return calculateDiscount("special", discount);
     }
 
-    public int calculateTotalBenefit() {
+    public int calculateTotalDiscount() {
         int totalDiscount = discounts.values().stream().mapToInt(Integer::intValue).sum();
-        if (event.getTotal() > TOTAL_AMOUNT_BEFORE_BENEFIT) {
-            totalDiscount += EventMenu.CHAMPAGNE.getPrice();
-        }
         return totalDiscount;
+    }
+
+    public int calculateTotalBenefit() {
+        if (event.getTotal() > TOTAL_AMOUNT_BEFORE_BENEFIT) {
+            return calculateTotalDiscount() + EventMenu.CHAMPAGNE.getPrice();
+        }
+        return calculateTotalDiscount();
     }
 
     public Map<String, Integer> getDiscounts() {
