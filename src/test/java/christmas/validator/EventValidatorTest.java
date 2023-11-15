@@ -13,4 +13,13 @@ public class EventValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
     }
+
+    @Test
+    void 날짜가_범위에_없으면_예외_처리() {
+        int date = 32;
+
+        assertThatThrownBy(() -> EventValidator.validateDate(date))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+    }
 }
