@@ -61,9 +61,9 @@ public class EventController {
         try {
             List<String> pairs = InputView.readMenuAndCount();
             List<String> menus = Util.extractMenu(pairs);
-            validateMenus(menus);
+            Util.validateMenus(menus);
             List<Integer> counts = Util.extractCount(pairs);
-            validateCounts(counts);
+            Util.validateCounts(counts);
             initializeEvent(menus, counts);
         }
         catch (IllegalArgumentException e) {
@@ -85,22 +85,5 @@ public class EventController {
         for (int i = 0; i < menus.size(); i++) {
             event.addMenu(menus.get(i), counts.get(i));
         }
-    }
-
-    private void validateMenus(List<String> menus) {
-        for (String menu : menus) {
-            EventValidation.validateIsExistedMenu(menu);
-        }
-        EventValidation.validateDuplication(menus);
-        EventValidation.validateIsOnlyDrinkType(menus);
-    }
-
-    private void validateCounts(List<Integer> counts) {
-        int total = 0;
-        for (int count : counts) {
-            EventValidation.validateOverSTANDARD_COUNT(count);
-            total += count;
-        }
-        EventValidation.validateOverMAX_COUNT(total);
     }
 }

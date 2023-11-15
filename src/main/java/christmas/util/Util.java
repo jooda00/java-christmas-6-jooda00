@@ -51,4 +51,21 @@ public class Util {
         }
         return counts;
     }
+
+    public static final void validateMenus(List<String> menus) {
+        for (String menu : menus) {
+            EventValidation.validateIsExistedMenu(menu);
+        }
+        EventValidation.validateDuplication(menus);
+        EventValidation.validateIsOnlyDrinkType(menus);
+    }
+
+    public static final void validateCounts(List<Integer> counts) {
+        int total = 0;
+        for (int count : counts) {
+            EventValidation.validateOverSTANDARD_COUNT(count);
+            total += count;
+        }
+        EventValidation.validateOverMAX_COUNT(total);
+    }
 }
