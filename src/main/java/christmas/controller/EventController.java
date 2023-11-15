@@ -3,7 +3,7 @@ package christmas.controller;
 import christmas.model.Event;
 import christmas.model.EventDiscount;
 import christmas.util.Util;
-import christmas.validation.EventValidation;
+import christmas.validator.EventValidator;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 
@@ -48,7 +48,7 @@ public class EventController {
     private int getDate() {
         try {
             int date = InputView.readDate();
-            EventValidation.validateDate(date);
+            EventValidator.validateDate(date);
             return date;
         }
         catch (IllegalArgumentException e) {

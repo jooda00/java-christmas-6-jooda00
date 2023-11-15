@@ -1,10 +1,10 @@
-package christmas.validation;
+package christmas.validator;
 
 import christmas.model.EventMenu;
 
 import java.util.List;
 
-public class EventValidation {
+public class EventValidator {
     private static final int STANDARD_COUNT = 1;
     private static final int MAX_COUNT = 20;
 

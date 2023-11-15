@@ -1,6 +1,6 @@
 package christmas.util;
 
-import christmas.validation.EventValidation;
+import christmas.validator.EventValidator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,14 +8,14 @@ import java.util.List;
 
 public class Util {
     public static final int convertStringToInt(String input) {
-        EventValidation.validateDateIsNumber(input);
+        EventValidator.validateDateIsNumber(input);
         int num = Integer.parseInt(input);
         return num;
     }
 
     public static final List<String> separateInput(String input) {
         List<String> pairs = Arrays.asList(input.split(","));
-        EventValidation.validateIsCorrectForm(pairs);
+        EventValidator.validateIsCorrectForm(pairs);
         separateInputByDash(pairs);
         return pairs;
     }
@@ -23,7 +23,7 @@ public class Util {
     public static final void separateInputByDash(List<String> pairs) {
         for (int i = 0; i < pairs.size(); i++) {
             String value = Arrays.asList(pairs.get(i).split("-")).get(1);
-            EventValidation.validateValueIsNumber(value);
+            EventValidator.validateValueIsNumber(value);
         }
     }
 
@@ -48,18 +48,18 @@ public class Util {
 
     public static final void validateMenus(List<String> menus) {
         for (String menu : menus) {
-            EventValidation.validateIsExistedMenu(menu);
+            EventValidator.validateIsExistedMenu(menu);
         }
-        EventValidation.validateDuplication(menus);
-        EventValidation.validateIsOnlyDrinkType(menus);
+        EventValidator.validateDuplication(menus);
+        EventValidator.validateIsOnlyDrinkType(menus);
     }
 
     public static final void validateCounts(List<Integer> counts) {
         int total = 0;
         for (int count : counts) {
-            EventValidation.validateOverSTANDARD_COUNT(count);
+            EventValidator.validateOverSTANDARD_COUNT(count);
             total += count;
         }
-        EventValidation.validateOverMAX_COUNT(total);
+        EventValidator.validateOverMAX_COUNT(total);
     }
 }
