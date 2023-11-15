@@ -61,4 +61,13 @@ public class EventValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
+
+    @Test
+    void 메뉴_입력값에_메뉴가_겹치면_예외_처리() {
+        List<String> menus = Arrays.asList("초코케이크", "타파스","초코케이크");
+
+        assertThatThrownBy(() -> EventValidator.validateDuplication(menus))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+    }
 }
