@@ -67,4 +67,13 @@ public class OutputView {
             System.out.println("증정 이벤트: -25,000원");
         }
     }
+
+    public static void printTotalDiscount(int totalDiscount) {
+        System.out.println("\n<총혜택 금액>");
+        if (totalDiscount != 0) {
+            System.out.println("-" + formatter.format(totalDiscount) + "원");
+            return;
+        }
+        System.out.println(formatter.format(totalDiscount) + "원");
+    }
 }

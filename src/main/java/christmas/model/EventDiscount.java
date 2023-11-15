@@ -6,6 +6,7 @@ import java.util.Map;
 public class EventDiscount {
     private static final int CHRISTMAS_DAY = 25;
     private static final int DISCOUNT_AMOUNT = 2023;
+    private static final int TOTAL_AMOUNT_BEFORE_BENEFIT = 120000;
     private final Event event;
     private final Map<String, Integer> discounts = new LinkedHashMap<>();
 
@@ -13,7 +14,7 @@ public class EventDiscount {
         this.event = event;
     }
 
-    private int calculateDiscount(String discountType, int discountValue) {
+    public int calculateDiscount(String discountType, int discountValue) {
         discounts.put(discountType, discountValue);
         return discountValue;
     }
@@ -50,6 +51,14 @@ public class EventDiscount {
             discount = 1000;
         }
         return calculateDiscount("special", discount);
+    }
+
+    public int calculateTotalBenefit() {
+        int totalDiscount = discounts.values().stream().mapToInt(Integer::intValue).sum();
+        if (event.getTotal() > TOTAL_AMOUNT_BEFORE_BENEFIT) {
+            totalDiscount += EventMenu.CHAMPAGNE.getPrice();
+        }
+        return totalDiscount;
     }
 
     public Map<String, Integer> getDiscounts() {
